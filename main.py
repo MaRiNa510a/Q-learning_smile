@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import random
 import csv
+import matplotlib.pyplot as plt
 
 LEARNING_RATE = 0.1
 DISCOUNT = 0.95
@@ -28,13 +29,14 @@ y_pixel = random.randrange(0, image_in_array.shape[1], 1)
 print("y = " + str(y_pixel))
 print("\n")
 
+
 which_action = random.randrange(1, 5, 1)                        #1 straight, 2 right, 3 back, 4 left
 action_position = []
 
-for i in range(0, 20):
+for i in range(0, 1000):
     action_position += str(which_action)
 
-    with open('action3.csv', 'w') as file:
+    with open('action.csv', 'w') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerows(action_position)
     print(which_action)
@@ -74,8 +76,8 @@ for y_pixel in range(0, image_out_array.shape[1]):              #transform array
             image_out[x_pixel, y_pixel] = [0, 0, 0]
             position += [[x_pixel, y_pixel]]
             print(position[-1])
-            with open('xy3.csv', 'w') as file:
-                writer = csv.writer(file, lineterminator='\n')
+            with open('xy.csv', 'w') as file:
+                writer = csv.writer(file, lineterminator=' black\n')
                 writer.writerows(position)
         else:
             image_out[x_pixel, y_pixel] = [255, 255, 255]
